@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raihan Nazim Chowdhury</title>
+<meta name="description" content="Raihan Nazim Chowdhury — Management Information Systems, Temple University. Projects, experience, and resume.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0B0E11;
+    --panel: #12161B;
+    --card: #1B2028;
+    --line: #262C35;
+    --text: #E7EAEE;
+    --muted: #8B94A3;
+    --accent: #3DDC8C;
+    --accent-dim: rgba(61,220,140,0.14);
+    --serif: 'Fraunces', serif;
+    --sans: 'Inter', system-ui, sans-serif;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior:smooth; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+  }
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+
+  ::selection{ background:var(--accent-dim); color:var(--text); }
+
+  /* ---------- layout shell ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    min-height:100vh;
+  }
+
+  @media (max-width: 860px){
+    .shell{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- nav rail ---------- */
+  nav.rail{
+    position:sticky;
+    top:0;
+    height:100vh;
+    padding:48px 32px;
+    border-right:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+
+  @media (max-width: 860px){
+    nav.rail{
+      position:static;
+      height:auto;
+      border-right:none;
+      border-bottom:1px solid var(--line);
+      flex-direction:row;
+      align-items:center;
+      padding:20px 24px;
+    }
+  }
+
+  .rail-top .mark{
+    font-family:var(--serif);
+    font-size:15px;
+    font-weight:500;
+    letter-spacing:0.02em;
+  }
+
+  .rail-links{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    margin-top:56px;
+    font-size:13px;
+    color:var(--muted);
+  }
+
+  @media (max-width: 860px){
+    .rail-links{
+      flex-direction:row;
+      gap:20px;
+      margin-top:0;
+      margin-left:auto;
+    }
+  }
+
+  .rail-links a{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    transition:color 0.15s ease;
+  }
+  .rail-links a:hover{ color:var(--text); }
+  .rail-links .tag{
+    font-size:10px;
+    color:var(--line);
+    font-variant-numeric:tabular-nums;
+  }
+  .rail-links a:hover .tag{ color:var(--accent); }
+
+  .rail-bottom{
+    font-size:12px;
+    color:var(--muted);
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+
+  @media (max-width: 860px){ .rail-bottom{ display:none; } }
+
+  .rail-bottom a{
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .rail-bottom a:hover{ color:var(--accent); }
+  .dot{
+    width:6px; height:6px; border-radius:50%;
+    background:var(--accent);
+    flex:none;
+  }
+
+  /* ---------- main ---------- */
+  main{ padding:0 56px 120px; max-width:920px; }
+  @media (max-width:860px){ main{ padding:0 24px 90px; } }
+
+  section{ padding-top:112px; }
+  section:first-of-type{ padding-top:72px; }
+
+  .eyebrow-line{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:28px;
+    color:var(--muted);
+    font-size:13px;
+  }
+  .eyebrow-line::after{
+    content:"";
+    height:1px;
+    flex:1;
+    background:var(--line);
+  }
+
+  /* ---------- hero ---------- */
+  .hero-role{
+    color:var(--accent);
+    font-size:14px;
+    font-family:var(--sans);
+    font-weight:500;
+    margin-bottom:18px;
+  }
+
+  h1{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(38px, 6vw, 64px);
+    line-height:1.05;
+    letter-spacing:-0.01em;
+    max-width:11ch;
+  }
+
+  .hero-bio{
+    margin-top:24px;
+    max-width:56ch;
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.65;
+  }
+
+  .hero-bio .fill-line{
+    display:inline-block;
+    border-bottom:1px dashed var(--line);
+    color:var(--line);
+  }
+
+  .stat-strip{
+    margin-top:56px;
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  @media (max-width:700px){
+    .stat-strip{ grid-template-columns:repeat(2, 1fr); }
+  }
+
+  .stat{
+    padding:22px 20px 22px 0;
+    border-right:1px solid var(--line);
+  }
+  .stat:last-child{ border-right:none; }
+  @media (max-width:700px){
+    .stat:nth-child(2n){ border-right:none; }
+    .stat:nth-child(-n+2){ border-bottom:1px solid var(--line); padding-bottom:20px; }
+    .stat:nth-child(n+3){ padding-top:20px; }
+  }
+
+  .stat-num{
+    font-family:var(--serif);
+    font-size:30px;
+    color:var(--accent);
+    font-variant-numeric:tabular-nums;
+  }
+  .stat-label{
+    margin-top:6px;
+    font-size:12.5px;
+    color:var(--muted);
+    line-height:1.4;
+  }
+
+  /* ---------- section heads ---------- */
+  h2{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:28px;
+    margin-bottom:36px;
+  }
+
+  /* ---------- education ---------- */
+  .edu-card{
+    border:1px solid var(--line);
+    background:var(--panel);
+    border-radius:10px;
+    padding:28px 30px;
+  }
+  .edu-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .edu-school{ font-size:17px; font-weight:600; }
+  .edu-date{ color:var(--muted); font-size:13px; white-space:nowrap; }
+  .edu-degree{ margin-top:6px; color:var(--muted); font-size:14.5px; }
+  .edu-meta{
+    margin-top:18px;
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+    font-size:13.5px;
+  }
+  .edu-meta .k{ color:var(--muted); }
+  .edu-meta .v{ color:var(--text); font-weight:500; }
+  .edu-honors{
+    margin-top:16px;
+    padding-top:16px;
+    border-top:1px solid var(--line);
+    font-size:13.5px;
+    color:var(--muted);
+    line-height:1.7;
+  }
+  .edu-honors strong{ color:var(--text); font-weight:500; }
+
+  /* ---------- experience ---------- */
+  .exp-item{
+    padding:26px 0;
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns:180px 1fr;
+    gap:24px;
+  }
+  .exp-item:last-child{ border-bottom:1px solid var(--line); }
+  @media (max-width:700px){
+    .exp-item{ grid-template-columns:1fr; gap:8px; }
+  }
+
+  .exp-when{
+    font-size:12.5px;
+    color:var(--muted);
+    padding-top:3px;
+  }
+  .exp-org{ font-size:12px; color:var(--muted); margin-top:4px; }
+
+  .exp-role{ font-size:16px; font-weight:600; margin-bottom:12px; }
+
+  .exp-item ul{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .exp-item li{
+    font-size:14.5px;
+    color:var(--muted);
+    line-height:1.6;
+    padding-left:16px;
+    position:relative;
+  }
+  .exp-item li::before{
+    content:"";
+    position:absolute;
+    left:0; top:9px;
+    width:5px; height:1px;
+    background:var(--muted);
+  }
+
+  /* ---------- project ---------- */
+  .project-card{
+    border:1px solid var(--line);
+    background:linear-gradient(180deg, var(--panel), var(--card));
+    border-radius:12px;
+    overflow:hidden;
+  }
+  .project-head{
+    padding:32px 32px 0;
+  }
+  .project-kicker{
+    font-size:12.5px;
+    color:var(--accent);
+    margin-bottom:10px;
+  }
+  .project-title{
+    font-family:var(--serif);
+    font-size:26px;
+    font-weight:500;
+  }
+  .project-stack{
+    margin-top:14px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .chip{
+    font-size:12px;
+    color:var(--muted);
+    border:1px solid var(--line);
+    padding:5px 10px;
+    border-radius:20px;
+  }
+  .project-body{
+    padding:24px 32px 32px;
+  }
+  .project-body ul{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:28px;
+  }
+  .project-body li{
+    font-size:14.5px;
+    color:var(--muted);
+    line-height:1.65;
+    padding-left:16px;
+    position:relative;
+  }
+  .project-body li::before{
+    content:"";
+    position:absolute;
+    left:0; top:9px;
+    width:5px; height:1px;
+    background:var(--muted);
+  }
+  .project-body li strong{ color:var(--text); font-weight:500; }
+
+  .project-links{ display:flex; gap:12px; flex-wrap:wrap; }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:13.5px;
+    font-weight:500;
+    padding:11px 18px;
+    border-radius:8px;
+    transition:transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  }
+  .btn-primary{
+    background:var(--accent);
+    color:#08130D;
+  }
+  .btn-primary:hover{ transform:translateY(-1px); }
+  .btn-ghost{
+    border:1px solid var(--line);
+    color:var(--text);
+  }
+  .btn-ghost:hover{ border-color:var(--accent); color:var(--accent); }
+
+  /* ---------- contact ---------- */
+  .contact-wrap{
+    border-top:1px solid var(--line);
+    padding-top:40px;
+  }
+  .contact-line{
+    font-family:var(--serif);
+    font-size:clamp(26px, 4vw, 38px);
+    max-width:16ch;
+    line-height:1.25;
+  }
+  .contact-links{
+    margin-top:32px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .contact-links a{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+    font-size:15px;
+    transition:padding-left 0.15s ease, color 0.15s ease;
+  }
+  .contact-links a:hover{
+    color:var(--accent);
+    padding-left:6px;
+  }
+  .contact-links .k{ color:var(--muted); font-size:12.5px; }
+
+  footer{
+    margin-top:80px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    font-size:12px;
+    color:var(--muted);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <nav class="rail">
+    <div class="rail-top">
+      <div class="mark">R. Chowdhury</div>
+    </div>
+    <div class="rail-links">
+      <a href="#education"><span class="tag">01</span>Education</a>
+      <a href="#experience"><span class="tag">02</span>Experience</a>
+      <a href="#work"><span class="tag">03</span>Work</a>
+      <a href="#contact"><span class="tag">04</span>Contact</a>
+    </div>
+    <div class="rail-bottom">
+      <a href="https://github.com/raihannazim" target="_blank" rel="noopener"><span class="dot"></span>GitHub</a>
+      <a href="https://www.linkedin.com/in/raihannazim/" target="_blank" rel="noopener"><span class="dot"></span>LinkedIn</a>
+      <a href="Raihan_Chowdhury_Resume.pdf" target="_blank" rel="noopener"><span class="dot"></span>Resume (PDF)</a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="top">
+      <div class="hero-role">Management Information Systems — Temple University, Fox School of Business</div>
+      <h1>Raihan Nazim Chowdhury</h1>
+      <p class="hero-bio"><span class="fill-line">[ bio coming soon — add a couple sentences here ]</span></p>
+
+      <div class="stat-strip">
+        <div class="stat">
+          <div class="stat-num">8–10</div>
+          <div class="stat-label">student staff led & trained</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">3,800</div>
+          <div class="stat-label">daily patrons served at the Info Desk</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4,000+</div>
+          <div class="stat-label">events prepped per year as Building Manager</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">3.55</div>
+          <div class="stat-label">GPA, Fox Honors Program</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="eyebrow-line">Education</div>
+      <h2>What I've studied</h2>
+      <div class="edu-card">
+        <div class="edu-top">
+          <div class="edu-school">Temple University — Fox School of Business</div>
+          <div class="edu-date">May 2027</div>
+        </div>
+        <div class="edu-degree">Bachelor of Business Administration, Management Information Systems</div>
+        <div class="edu-meta">
+          <div><span class="k">GPA</span> <span class="v">3.55</span></div>
+          <div><span class="k">Location</span> <span class="v">Philadelphia, PA</span></div>
+        </div>
+        <div class="edu-honors">
+          <strong>Honors:</strong> Temple University Honors Program, Fox Honors Program &nbsp;·&nbsp;
+          <strong>Awards:</strong> Dean's Global Scholar, Dean's List (Spring 2025)
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="eyebrow-line">Experience</div>
+      <h2>Where I've worked</h2>
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-when">Aug 2024 – Present</div>
+          <div class="exp-org">Temple Student Center</div>
+        </div>
+        <div>
+          <div class="exp-role">Information Desk Manager / Attendant</div>
+          <ul>
+            <li>Lead and supervise a team of 8–10 student workers, building leadership skills through training, mentoring, and performance feedback.</li>
+            <li>Oversee daily operations of the Student Center's Information Desk, a high-traffic atrium serving roughly 3,800 patrons a day.</li>
+            <li>Develop new programs and procedures to improve service quality and the visitor experience.</li>
+            <li>Coordinate logistics for campus services, including vendor check-ins and poster submissions for the display wall.</li>
+            <li>Act as the primary escalation point for technology and vendor-related issues.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-when">Jan 2024 – Present</div>
+          <div class="exp-org">Temple Student Center</div>
+        </div>
+        <div>
+          <div class="exp-role">Building Manager</div>
+          <ul>
+            <li>Prepare over 4,000 events a year, setting up furniture and technology across 164,000 sq ft of meeting and event space.</li>
+            <li>Enforce building-wide policies for 2,000+ daily patrons.</li>
+            <li>Serve as primary support for technology, customer service, and procedural issues across all services.</li>
+            <li>Guide students and visitors around the building and Temple's 406-acre main campus.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-when">Summer</div>
+          <div class="exp-org">Temple University</div>
+        </div>
+        <div>
+          <div class="exp-role">Pre-College Mentor</div>
+          <ul>
+            <li>Mentored and supported 150+ high school students with academic coaching and college-readiness guidance.</li>
+            <li>Led daily workshops and presentations to strengthen student engagement and preparation.</li>
+            <li>Coordinated program logistics, attendance, evaluations, and field trips with instructors and staff.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="eyebrow-line">Selected work</div>
+      <h2>What I've built</h2>
+
+      <div class="project-card">
+        <div class="project-head">
+          <div class="project-kicker">Full-stack · sports data</div>
+          <div class="project-title">Premier League Statistics &amp; Prediction Dashboard</div>
+          <div class="project-stack">
+            <span class="chip">HTML</span>
+            <span class="chip">CSS</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">Node.js</span>
+            <span class="chip">Express</span>
+            <span class="chip">Chart.js</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <ul>
+            <li>Built and deployed a full-stack dashboard that pulls live standings, team stats, and performance data from the football-data.org API.</li>
+            <li>Developed interactive visualizations with Chart.js and a <strong>10,000-run Monte Carlo simulation</strong> to project final standings and title-winning probabilities.</li>
+            <li>Built a Node.js/Express backend for API integration and secure environment-variable management; version-controlled with GitHub and deployed on Render.</li>
+          </ul>
+          <div class="project-links">
+            <a class="btn btn-primary" href="https://premier-league-dashboard-r845.onrender.com/" target="_blank" rel="noopener">View live demo</a>
+            <a class="btn btn-ghost" href="https://github.com/raihannazim/premier-league-dashboard" target="_blank" rel="noopener">View source</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact-wrap">
+        <div class="contact-line">Open to internships and MIS-related opportunities in Philadelphia and beyond.</div>
+        <div class="contact-links">
+          <a href="mailto:raihannazim@temple.edu">
+            <span>raihannazim@temple.edu</span>
+            <span class="k">Email</span>
+          </a>
+          <a href="https://www.linkedin.com/in/raihannazim/" target="_blank" rel="noopener">
+            <span>linkedin.com/in/raihannazim</span>
+            <span class="k">LinkedIn</span>
+          </a>
+          <a href="https://github.com/raihannazim" target="_blank" rel="noopener">
+            <span>github.com/raihannazim</span>
+            <span class="k">GitHub</span>
+          </a>
+          <a href="Raihan_Chowdhury_Resume.pdf" target="_blank" rel="noopener">
+            <span>Download PDF</span>
+            <span class="k">Resume</span>
+          </a>
+        </div>
+      </div>
+
+      <footer>
+        <div>Philadelphia, PA · (267) 228-4381</div>
+        <div>&copy; 2026 Raihan Nazim Chowdhury</div>
+      </footer>
+    </section>
+  </main>
+</div>
+
+</body>
+</html>
